@@ -14,10 +14,10 @@ class RestaurantReview(StatesGroup):
     extra_comments = State()
 
 
-@review_router.message(Command("review"))
-async def start_review(message: types.Message, state: FSMContext):
+@review_router.callback_query(F.data=='review')
+async def start_review(call: types.CallbackQuery, state: FSMContext):
     await state.set_state(RestaurantReview.name)
-    await message.answer("Как вас зовут?")
+    await call.message.answer("Как вас зовут?")
 
 @review_router.message(RestaurantReview.name)
 async def process_name(message: types.Message, state: FSMContext):

@@ -26,7 +26,3 @@ async def start_handler(message: types.Message):
         ]
     )
     await message.answer(msg, reply_markup=kb)
-
-@start_router.callback_query(F.data == "review")
-async def about_us(callback: types.CallbackQuery):
-    await callback.message.answer("Оставить отзыв")
