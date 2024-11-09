@@ -1,5 +1,6 @@
-from aiogram import Router, types
+from aiogram import Router, F, types
 from aiogram.filters import Command
+
 start_router = Router()
 
 @start_router.message(Command("start"))
@@ -16,8 +17,16 @@ async def start_handler(message: types.Message):
                 types.InlineKeyboardButton(
                     text="Наш сайт",
                     url="https://faiza.kg/"
+                ),
+                types.InlineKeyboardButton(
+                    text="Оставить отзыв",
+                    callback_data="review"
                 )
             ]
         ]
     )
     await message.answer(msg, reply_markup=kb)
+
+@start_router.callback_query(F.data == "review")
+async def about_us(callback: types.CallbackQuery):
+    await callback.message.answer("Оставить отзыв")
