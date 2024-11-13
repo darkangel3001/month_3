@@ -26,7 +26,7 @@ rating_keyboard = ReplyKeyboardMarkup(
     one_time_keyboard=True
 )
 
-# Оценка даты посещение (я мог сделать в одну строку, но у меня больше 12 уже не показывает, а так все нормально)
+# Оценка даты посещение (я мог сделать в одну строку как и кнопку для оценки еды и чистоты, но у меня почему-то в боте больше 12 кнопок уже не показывает, а если так записать, то все 31)
 date_keyboard = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text=str(i)) for i in range(1, 6)],
