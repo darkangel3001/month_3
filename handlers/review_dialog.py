@@ -3,6 +3,8 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
+from bot_config import review_answer
+
 review_router = Router()
 
 
@@ -40,6 +42,11 @@ date_keyboard = ReplyKeyboardMarkup(
     one_time_keyboard=True
 )
 
+
+@review_router.message(F.text.in_(["стоп", "stop"]))
+async def stop_review(message: types.Message, state: FSMContext):
+    await state.clear()
+    await message.answer("Отзыв был остановлен")
 
 @review_router.callback_query(F.data == 'review')
 async def start_review(call: types.CallbackQuery, state: FSMContext):
@@ -116,4 +123,15 @@ async def process_extra_comments(message: types.Message, state: FSMContext):
     await message.answer("Спасибо за отзыв!")
     data = await state.get_data()
     print(data)
+
+    review_answer.execute(
+        query="""
+           INSERT INTO review (name, phone_number, visit_date, food_rating, 
+           cleanliness_rating, extra_comments)
+           VALUES (?, ?, ?, ?, ?, ?)
+           """,
+        params=(data["name"], data["phone_number"], data["visit_date"], data["food_rating"],
+                data["cleanliness_rating"], data["extra_comments"])
+    )
+
     await state.clear()
