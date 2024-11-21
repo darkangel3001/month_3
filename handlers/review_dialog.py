@@ -15,7 +15,7 @@ class RestaurantReview(StatesGroup):
     food_rating = State()
     cleanliness_rating = State()
     extra_comments = State()
-    confirm = State()
+
 
 rating_keyboard = ReplyKeyboardMarkup(
     keyboard=[
