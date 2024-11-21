@@ -15,11 +15,8 @@ class RestaurantReview(StatesGroup):
     food_rating = State()
     cleanliness_rating = State()
     extra_comments = State()
+    confirm = State()
 
-
-# Я сделал текстовые кнопки по своему, Игорь, извините что я сделал не по вашему примеру в Github !
-
-# Кнопки для оценки еды и чистоты заведения
 rating_keyboard = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text=str(i)) for i in range(1, 6)]
@@ -28,7 +25,6 @@ rating_keyboard = ReplyKeyboardMarkup(
     one_time_keyboard=True
 )
 
-# Оценка даты посещение (я мог сделать в одну строку как и кнопку для оценки еды и чистоты, но у меня почему-то в боте больше 12 кнопок уже не показывает, а если так записать, то все 31)
 date_keyboard = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text=str(i)) for i in range(1, 6)],
