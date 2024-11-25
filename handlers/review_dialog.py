@@ -42,7 +42,7 @@ date_keyboard = ReplyKeyboardMarkup(
 @review_router.message(F.text.in_(["стоп", "stop"]))
 async def stop_review(message: types.Message, state: FSMContext):
     await state.clear()
-    await message.answer("Отзыв был остановлен")
+    await message.answer("Отзыв был остановлен!")
 
 @review_router.callback_query(F.data == 'review')
 async def start_review(call: types.CallbackQuery, state: FSMContext):
@@ -127,7 +127,7 @@ async def process_extra_comments(message: types.Message, state: FSMContext):
            VALUES (?, ?, ?, ?, ?, ?)
            """,
         params=(data["name"], data["phone_number"], data["visit_date"], data["food_rating"],
-                data["cleanliness_rating"], data["extra_comments"])
+                data["cleanliness_rating"], data["extra_comments"]),
     )
 
     await state.clear()

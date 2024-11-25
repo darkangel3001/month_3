@@ -19,6 +19,14 @@ class Database:
                     )   
                 """
             )
+            conn.execute(
+                """
+                    CREATE TABLE IF NOT EXISTS dish_categories (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT NOT NULL
+                    )
+                """
+            )
 
             conn.execute(
                 """
@@ -26,7 +34,8 @@ class Database:
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT NOT NULL,
                     price INTEGER NOT NULL,
-                    cooking_time INTEGER NOT NULL
+                    cooking_time INTEGER NOT NULL,
+                    categories TEXT NOT NULL
                     )
                 """
             )
