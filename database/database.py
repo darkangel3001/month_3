@@ -8,7 +8,7 @@ class Database:
         with sqlite3.connect(self.path) as conn:
             conn.execute(
                 """
-                    CREATE TABLE IF NOT EXISTS reviews (
+                    CREATE TABLE IF NOT EXISTS homework (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         name VARCHAR(15) NOT NULL,
                         phone_number TEXT NOT NULL,
@@ -19,26 +19,7 @@ class Database:
                     )   
                 """
             )
-            conn.execute(
-                """
-                    CREATE TABLE IF NOT EXISTS dish_categories (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    name TEXT NOT NULL
-                    )
-                """
-            )
 
-            conn.execute(
-                """
-                    CREATE TABLE IF NOT EXISTS dishes (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    name TEXT NOT NULL,
-                    price INTEGER NOT NULL,
-                    cooking_time INTEGER NOT NULL,
-                    categories TEXT NOT NULL
-                    )
-                """
-            )
             conn.commit()
 
     def execute(self, query: str, params: tuple):

@@ -11,7 +11,7 @@ async def start_handler(message: types.Message):
         inline_keyboard=[
             [
                 types.InlineKeyboardButton(
-                    text="Наш инстаргам",
+                    text="Наш инстаграм",
                     url="https://www.instagram.com/faiza_cafe?igsh=MTE5NXcxbHdqdXYyaA=="
                 ),
                 types.InlineKeyboardButton(
